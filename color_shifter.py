@@ -2,8 +2,11 @@ from numpy import copy
 import cv2 
 
 
-img = cv2.imread("C:/Users/lenovo/Desktop/Educate/DIP/Programs/Images/map.png",1)
-# get the image, change the path to whatever you need
+path = input("Enter the full path of the image, including filetype : ")
+hueshift = int(input("Enter amount of hue shift needed : "))
+
+img = cv2.imread(path,1)
+# get the image
 
 dupe = copy(img)
 # make a copy for color changing and stuff
@@ -14,8 +17,8 @@ dupe = cv2.cvtColor(dupe, cv2.COLOR_BGR2HSV)
 # change to HSV becuase then you can easily adjust Hue to change the colors 
 
 h = dupe[:,:,0]
-h = h+70
-# adding 70 here to convert a red-darkgreen chart to lightgreen-darkblue
+h = h + hueshift
+# 70 is a good value for hue shift, but leave it up to the user
 
 
 dupe[:,:,0] = h%180
